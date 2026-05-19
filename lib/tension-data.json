@@ -1,0 +1,38 @@
+{
+  "scenarios": [
+    {
+      "id": "general",
+      "name": "종합 긴장 지수",
+      "description": "모든 지표를 종합한 일반적인 긴장 상태 분석",
+      "parameters": [
+        { "id": "military", "name": "군사", "value": 88, "details": "핵 시설 활동 및 접경 지역 군사 기동을 종합한 물리적 위협 수준. 7차 핵실험 징후 및 전진 배치 포착." },
+        { "id": "diplomatic", "name": "외교", "value": 72, "details": "전화 통신선 무응답 및 고위급 담화 거부 등 대외 관계 단절 및 강경 메시지 빈도." },
+        { "id": "political", "name": "정치", "value": 83, "details": "대남 적대 표현 및 '교전 국가' 규정 등 내부 결속용 선전 강도와 체제 위협 요소." },
+        { "id": "economic", "name": "경제", "value": 74, "details": "제재 위반 정황, 사이버 금융 탈취, 자원 수급 불안정 등 경제적 리스크 요인 종합." }
+      ],
+      "history": [
+        { "period": "2021년", "score": 42, "label": "안정", "summary": "남북 통신선 복원 및 유화 국면 유지." },
+        { "period": "2022년", "score": 58, "label": "주의", "summary": "신형 전술 유도탄 시험 발사 및 담화 발표 증가." },
+        { "period": "2023년", "score": 71, "label": "경고", "summary": "정찰 위성 발사 및 해상 완충구역 포격 도발." },
+        { "period": "2024년", "score": 85, "label": "고위험", "summary": "핵 위협 구체화 및 전선 병력 전진 배치 포착." }
+      ]
+    },
+    {
+      "id": "border",
+      "name": "접경 지역 특화",
+      "description": "서해 NLL 및 DMZ 등 물리적 접경지 충돌 가능성 집중 분석",
+      "parameters": [
+        { "id": "military", "name": "군사", "value": 92, "details": "NLL 해안포 사격, 무인기 침투 등 접경 지역의 직접적인 군사적 도발 가능성." },
+        { "id": "diplomatic", "name": "외교", "value": 60, "details": "접경 지역 핫라인 단절 및 국지적 소통 부재." },
+        { "id": "political", "name": "정치", "value": 88, "details": "확성기 재개 및 삐라 살포에 따른 보복 예고 등 정치적 긴장 고조." },
+        { "id": "economic", "name": "경제", "value": 50, "details": "접경지 밀무역 통제 및 물류 차단에 따른 국지적 경제 영향." }
+      ],
+      "history": [
+        { "period": "2021년", "score": 35, "label": "안정", "summary": "접경 지역 평시 수준 유지 및 어선 조업 통제." },
+        { "period": "2022년", "score": 48, "label": "안정", "summary": "영해 침범 사례 발생 및 소강 상태." },
+        { "period": "2023년", "score": 82, "label": "고위험", "summary": "해상 완충구역 내 대규모 포격 도발." },
+        { "period": "2024년", "score": 92, "label": "긴급", "summary": "무인기 침투 및 포병 대기 태세 발령." }
+      ]
+    }
+  ]
+}

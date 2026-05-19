@@ -2,9 +2,6 @@
 
 import { useEffect, useState } from "react"
 
-const SCORE = 78
-const MAX = 100
-
 function polarToXY(cx: number, cy: number, r: number, angleDeg: number) {
   const rad = ((angleDeg - 90) * Math.PI) / 180
   return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) }
@@ -23,25 +20,37 @@ function getColor(score: number) {
   return "#ef4444"
 }
 
-export function TensionGauge() {
+interface TensionGaugeProps {
+  score?: number
+}
+
+export function TensionGauge({ score = 0 }: TensionGaugeProps) {
   const [animScore, setAnimScore] = useState(0)
+  const MAX = 100
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      let current = 0
-      const step = () => {
-        current += 1.5
-        if (current >= SCORE) {
-          setAnimScore(SCORE)
-        } else {
-          setAnimScore(current)
-          requestAnimationFrame(step)
-        }
+    let animationFrameId: number
+    const target = score
+    const duration = 1000
+    const start = animScore
+    const startTime = performance.now()
+
+    const animate = (currentTime: number) => {
+      const elapsed = currentTime - startTime
+      const progress = Math.min(elapsed / duration, 1)
+      const easeProgress = 1 - Math.pow(1 - progress, 3) // Cubic ease out
+      const current = start + (target - start) * easeProgress
+      
+      setAnimScore(current)
+      
+      if (progress < 1) {
+        animationFrameId = requestAnimationFrame(animate)
       }
-      requestAnimationFrame(step)
-    }, 400)
-    return () => clearTimeout(timeout)
-  }, [])
+    }
+
+    animationFrameId = requestAnimationFrame(animate)
+    return () => cancelAnimationFrame(animationFrameId)
+  }, [score])
 
   const cx = 200, cy = 200, r = 150
   const startAngle = -135, endAngle = 135
@@ -67,7 +76,7 @@ export function TensionGauge() {
 
       <div className="flex-1 flex flex-col items-center justify-center">
         <div className="relative w-[340px] h-[260px]">
-          <svg width="340" height="260" viewBox="0 0 400 340" aria-label={`긴장 점수: ${SCORE} / 100`}>
+          <svg width="340" height="260" viewBox="0 0 400 340" aria-label={`긴장 점수: ${Math.round(score)} / 100`}>
             {/* Background Track */}
             <path
               d={describeArc(cx, cy, r, startAngle, endAngle)}

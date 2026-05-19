@@ -40,50 +40,56 @@ export default function InsightsPage() {
   return (
     <div className="h-full flex flex-col gap-4">
       <div>
-        <h1 className="text-lg font-bold text-foreground">인사이트</h1>
-        <p className="text-xs text-muted-foreground mt-0.5">시장 영향도 · 선전 키워드 · 데이터 소스 현황</p>
+        <h1 className="text-3xl font-bold text-foreground tracking-tight">인사이트</h1>
+        <p className="text-sm text-muted-foreground mt-1">시장 영향도 · 선전 키워드 · 데이터 소스 현황</p>
       </div>
 
       <InsightCards />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 flex-1 min-h-0">
-        <div className="bg-card border border-border rounded-xl p-4 flex flex-col min-h-0">
-          <h2 className="text-xs font-semibold text-muted-foreground mb-2.5">주요 관찰 사항</h2>
-          <div className="space-y-2 flex-1">
+        <div className="bg-card border border-border rounded-xl p-6 shadow-sm flex flex-col min-h-0">
+          <div className="mb-4">
+            <h2 className="text-2xl font-bold text-foreground tracking-tight">주요 관찰 사항</h2>
+            <p className="text-sm text-muted-foreground font-medium uppercase tracking-wider">최신 AI 분석 리포트</p>
+          </div>
+          <div className="space-y-3 flex-1 overflow-y-auto pr-2 custom-scrollbar">
             {ANALYST_NOTES.map((note, i) => (
-              <div key={i} className="p-3 rounded-lg bg-muted/20 flex items-start gap-3">
+              <div key={i} className="p-4 rounded-2xl bg-muted/20 border border-border/50 flex items-start gap-4 transition-all hover:bg-muted/30">
                 <span
-                  className="w-1 self-stretch rounded-full shrink-0"
-                  style={{ background: note.color, minHeight: 14 }}
+                  className="w-1.5 self-stretch rounded-full shrink-0"
+                  style={{ background: note.color, minHeight: 24 }}
                   aria-hidden="true"
                 />
                 <div>
-                  <p className="text-[11px] text-muted-foreground mb-0.5">{note.date}</p>
-                  <p className="text-xs text-foreground leading-relaxed">{note.text}</p>
+                  <p className="text-xs font-black text-muted-foreground uppercase tracking-widest mb-1">{note.date}</p>
+                  <p className="text-sm text-foreground font-medium leading-relaxed">{note.text}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="bg-card border border-border rounded-xl p-4 flex flex-col min-h-0">
-          <h2 className="text-xs font-semibold text-muted-foreground mb-2.5">사용자 유형별 권장 활용</h2>
-          <div className="grid grid-cols-3 gap-3 flex-1">
+        <div className="bg-card border border-border rounded-xl p-6 shadow-sm flex flex-col min-h-0">
+          <div className="mb-4">
+            <h2 className="text-2xl font-bold text-foreground tracking-tight">사용자 유형별 권장 활용</h2>
+            <p className="text-sm text-muted-foreground font-medium uppercase tracking-wider">역할 중심 가이드</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 flex-1">
             {USER_GUIDES.map((group) => (
               <div
                 key={group.title}
-                className="rounded-lg border p-3 flex flex-col gap-2"
+                className="rounded-2xl border p-4 flex flex-col gap-3 transition-all hover:shadow-md"
                 style={{
                   borderColor: `color-mix(in srgb, ${group.color} 25%, transparent)`,
                   background: `color-mix(in srgb, ${group.color} 5%, transparent)`,
                 }}
               >
-                <p className="text-xs font-semibold" style={{ color: group.color }}>{group.title}</p>
-                <ul className="space-y-1.5" role="list">
+                <p className="text-sm font-black uppercase tracking-tight" style={{ color: group.color }}>{group.title}</p>
+                <ul className="space-y-2" role="list">
                   {group.items.map((item, i) => (
-                    <li key={i} className="flex items-start gap-1.5">
-                      <span className="w-1 h-1 rounded-full shrink-0 mt-1.5" style={{ background: group.color }} aria-hidden="true" />
-                      <span className="text-[11px] text-muted-foreground leading-relaxed">{item}</span>
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full shrink-0 mt-1.5" style={{ background: group.color }} aria-hidden="true" />
+                      <span className="text-xs text-muted-foreground font-medium leading-tight">{item}</span>
                     </li>
                   ))}
                 </ul>

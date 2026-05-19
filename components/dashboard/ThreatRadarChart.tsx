@@ -9,32 +9,31 @@ import {
   Tooltip,
 } from "recharts"
 
-const RADAR_DATA = [
-  { subject: "군사 도발", value: 85 },
-  { subject: "외교 단절", value: 72 },
-  { subject: "경제 제재", value: 68 },
-  { subject: "사이버 위협", value: 79 },
-  { subject: "핵 위협", value: 90 },
-  { subject: "선전 강도", value: 83 },
-]
+interface ThreatRadarChartProps {
+  data?: any[]
+  onPointClick?: (data: any) => void
+}
 
-export function ThreatRadarChart() {
+export function ThreatRadarChart({ data, onPointClick }: ThreatRadarChartProps) {
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <RadarChart data={RADAR_DATA}>
+    <ResponsiveContainer width="100%" height="100%" minHeight={300}>
+      <RadarChart cx="50%" cy="50%" outerRadius="65%" data={data} margin={{ top: 20, right: 30, bottom: 20, left: 30 }}>
         <PolarGrid stroke="rgba(148,163,184,0.1)" />
         <PolarAngleAxis
           dataKey="subject"
-          tick={{ fill: "#94a3b8", fontSize: 16, fontFamily: "monospace", fontWeight: "bold" }}
+          tick={{ fill: "#94a3b8", fontSize: 14, fontFamily: "monospace", fontWeight: "bold" }}
         />
         <Radar
+          name="위험 점수"
           dataKey="value"
           stroke="#ef4444"
           fill="#ef4444"
-          fillOpacity={0.2}
-          strokeWidth={3}
-          dot={{ fill: "#ef4444", r: 5 }}
-          style={{ filter: "drop-shadow(0 0 8px rgba(239,68,68,0.5))" }}
+          fillOpacity={0.25}
+          strokeWidth={4}
+          dot={{ fill: "#ef4444", r: 6, className: "cursor-pointer" }}
+          activeDot={{ r: 8 }}
+          onClick={(data: any) => onPointClick?.({ type: "parameter", ...data })}
+          style={{ filter: "drop-shadow(0 0 10px rgba(239,68,68,0.5))" }}
         />
         <Tooltip
           contentStyle={{
@@ -44,10 +43,10 @@ export function ThreatRadarChart() {
             fontSize: "14px",
             fontFamily: "monospace",
             fontWeight: "bold",
-            color: "#e2e8f0",
+            color: "#ffffff",
             padding: "10px 15px",
           }}
-          formatter={(v: number) => [`${v} / 100`, "위험 점수"]}
+          formatter={(v: number) => [`${v} / 100`, "점수"]}
         />
       </RadarChart>
     </ResponsiveContainer>

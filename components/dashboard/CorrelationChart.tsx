@@ -65,48 +65,48 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 
 export function CorrelationChart() {
   return (
-    <div className="glass-card rounded-xl p-5">
+    <div className="glass-card rounded-xl p-5 shadow-sm">
       {/* 헤더 */}
-      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-6">
-        <div>
-          <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+      <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-4 mb-4">
+        <div className="flex-1">
+          <span className="text-xs font-black uppercase tracking-widest text-muted-foreground/80">
             교차 분석 &amp; 예측
           </span>
-          <h2 className="text-sm font-bold text-foreground mt-1">
+          <h2 className="text-xl font-black text-foreground mt-1 tracking-tight">
             상관관계 &amp; 예측 분석
           </h2>
-          <p className="text-xs text-muted-foreground mt-1 leading-relaxed max-w-xl">
+          <p className="text-sm text-muted-foreground mt-1.5 font-medium whitespace-nowrap overflow-hidden text-ellipsis">
             높은 긴장도가 경제적 생명줄을 끊는가? 12개월간 무역 데이터와 긴장 지수의 비교 분석입니다.
           </p>
         </div>
         {/* 범례 */}
-        <div className="flex gap-4 shrink-0">
+        <div className="flex gap-4 shrink-0 bg-muted/10 p-2.5 rounded-xl border border-border/50">
           <div className="flex items-center gap-2">
-            <span className="w-5 h-0.5 bg-[#ef4444] inline-block rounded" />
-            <span className="text-xs font-mono text-muted-foreground">긴장 점수</span>
+            <span className="w-5 h-1 bg-[#ef4444] inline-block rounded-full" />
+            <span className="text-xs font-bold text-foreground/70">긴장 점수</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="w-5 h-0.5 bg-[#10b981] inline-block rounded" />
-            <span className="text-xs font-mono text-muted-foreground">무역 규모</span>
+            <span className="w-5 h-1 bg-[#10b981] inline-block rounded-full" />
+            <span className="text-xs font-bold text-foreground/70">무역 규모</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="w-5 h-0.5 border-t-2 border-dashed border-[var(--warning)] inline-block" />
-            <span className="text-xs font-mono text-muted-foreground">AI 예측</span>
+            <span className="w-5 h-1 border-t-2 border-dashed border-[var(--warning)] inline-block" />
+            <span className="text-xs font-bold text-foreground/70">AI 예측</span>
           </div>
         </div>
       </div>
 
       {/* 차트 */}
-      <div className="h-72">
+      <div className="h-[340px] w-full">
         <ResponsiveContainer width="100%" height="100%">
-          <ComposedChart data={ALL_DATA} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+          <ComposedChart data={ALL_DATA} margin={{ top: 10, right: 30, bottom: 5, left: 0 }}>
             <defs>
               <linearGradient id="tensionGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#ef4444" stopOpacity={0.3} />
+                <stop offset="5%" stopColor="#ef4444" stopOpacity={0.2} />
                 <stop offset="95%" stopColor="#ef4444" stopOpacity={0} />
               </linearGradient>
               <linearGradient id="tradeGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#10b981" stopOpacity={0.2} />
+                <stop offset="5%" stopColor="#10b981" stopOpacity={0.15} />
                 <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
               </linearGradient>
             </defs>
@@ -157,7 +157,6 @@ export function CorrelationChart() {
               fill="url(#tensionGrad)"
               dot={false}
               activeDot={{ r: 4, fill: "#ef4444", stroke: "#0f172a", strokeWidth: 2 }}
-              style={{ filter: "drop-shadow(0 0 4px rgba(239,68,68,0.5))" }}
             />
             {/* 무역 면적 */}
             <Area
@@ -169,7 +168,6 @@ export function CorrelationChart() {
               fill="url(#tradeGrad)"
               dot={false}
               activeDot={{ r: 4, fill: "#10b981", stroke: "#0f172a", strokeWidth: 2 }}
-              style={{ filter: "drop-shadow(0 0 4px rgba(16,185,129,0.5))" }}
             />
             {/* 예측 긴장 점선 */}
             <Line
@@ -198,12 +196,12 @@ export function CorrelationChart() {
       </div>
 
       {/* 인사이트 콜아웃 */}
-      <div className="mt-4 p-3 rounded-lg border border-[var(--warning)]/30 bg-[var(--warning)]/5 flex items-start gap-2">
-        <span className="text-[var(--warning)] font-mono text-sm shrink-0">⚡</span>
-        <p className="text-xs font-mono text-muted-foreground leading-relaxed">
-          <span className="text-[var(--warning)] font-semibold">AI 인사이트:</span>{" "}
+      <div className="mt-8 p-4 rounded-2xl border border-[var(--warning)]/30 bg-[var(--warning)]/5 flex items-start gap-3 shadow-inner">
+        <span className="text-[var(--warning)] text-lg shrink-0">⚡</span>
+        <p className="text-sm font-medium text-muted-foreground leading-relaxed">
+          <span className="text-[var(--warning)] font-black uppercase tracking-tighter">AI INSIGHT:</span>{" "}
           긴장 점수와 무역 규모 사이에서 역상관계수{" "}
-          <span className="text-foreground font-semibold">−0.89</span>가 감지되었습니다.
+          <span className="text-foreground font-black underline decoration-[var(--warning)]/30 underline-offset-4">−0.89</span>가 감지되었습니다.
           긴장도가 82를 초과할 경우, 2025년 1분기에 무역 규모가 지속적으로 감소할 것으로 예측됩니다.
         </p>
       </div>

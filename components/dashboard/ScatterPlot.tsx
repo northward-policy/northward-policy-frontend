@@ -35,15 +35,16 @@ export function ScatterPlot() {
           name="긴장 점수"
           type="number"
           domain={[35, 85]}
-          tick={{ fill: "#64748b", fontSize: 10, fontFamily: "monospace" }}
+          tick={{ fill: "#94a3b8", fontSize: 11, fontWeight: 600, fontFamily: "monospace" }}
           tickLine={false}
           axisLine={false}
           label={{
             value: "긴장 점수",
             position: "insideBottom",
-            offset: -2,
-            fill: "#64748b",
-            fontSize: 10,
+            offset: -10,
+            fill: "#94a3b8",
+            fontSize: 12,
+            fontWeight: 800,
             fontFamily: "monospace",
           }}
         />
@@ -52,10 +53,20 @@ export function ScatterPlot() {
           name="무역 규모"
           type="number"
           domain={[1600, 3300]}
-          tick={{ fill: "#64748b", fontSize: 10, fontFamily: "monospace" }}
+          tick={{ fill: "#94a3b8", fontSize: 11, fontWeight: 600, fontFamily: "monospace" }}
           tickLine={false}
           axisLine={false}
           tickFormatter={(v) => `${(v / 1000).toFixed(1)}B`}
+          label={{
+            value: "무역 규모 (USD)",
+            angle: -90,
+            position: "insideLeft",
+            offset: 15,
+            fill: "#94a3b8",
+            fontSize: 12,
+            fontWeight: 800,
+            fontFamily: "monospace",
+          }}
         />
         <Tooltip
           contentStyle={{
