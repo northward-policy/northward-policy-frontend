@@ -27,14 +27,14 @@ export function Sidebar() {
             <Link
               key={href}
               href={href}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
+              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-lg transition-colors ${
                 isActive
                   ? "bg-[var(--success)]/10 text-[var(--success)] font-medium"
                   : "text-muted-foreground hover:text-foreground hover:bg-muted"
               }`}
               aria-current={isActive ? "page" : undefined}
             >
-              <Icon className="w-4 h-4 shrink-0" aria-hidden="true" />
+              <Icon className="w-6 h-6 shrink-0" aria-hidden="true" />
               {label}
             </Link>
           )

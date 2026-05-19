@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { TrendingUp } from "lucide-react"
 
 const SCORE = 78
 const MAX = 100
@@ -63,8 +62,8 @@ export function TensionGauge() {
 
   return (
     <div className="h-full flex flex-col p-1">
-      <p className="text-base font-semibold text-foreground mb-0.5 tracking-tight">평양 긴장 점수</p>
-      <p className="text-[10px] text-muted-foreground mb-3 font-medium uppercase tracking-wider">AI 분석 · 실시간 위기 지표</p>
+      <p className="text-2xl font-bold text-foreground mb-1 tracking-tight">평양 긴장 점수</p>
+      <p className="text-sm text-muted-foreground mb-4 font-medium uppercase tracking-wider">AI 분석 · 실시간 위기 지표</p>
 
       <div className="flex-1 flex flex-col items-center justify-center">
         <div className="relative w-[340px] h-[260px]">
@@ -101,26 +100,18 @@ export function TensionGauge() {
             <circle cx={cx} cy={cy} r="10" fill="var(--card)" stroke={color} strokeWidth="4" />
             
             {/* Labels */}
-            <text x="40" y="335" fill="#10b981" fontSize="12" fontFamily="monospace" fontWeight="900" textAnchor="middle">안전</text>
-            <text x="200" y="25" fill="#f59e0b" fontSize="12" fontFamily="monospace" fontWeight="900" textAnchor="middle">주의</text>
-            <text x="360" y="335" fill="#ef4444" fontSize="12" fontFamily="monospace" fontWeight="900" textAnchor="middle">위험</text>
+            <text x="40" y="335" fill="#10b981" fontSize="18" fontFamily="monospace" fontWeight="900" textAnchor="middle">안전</text>
+            <text x="200" y="25" fill="#f59e0b" fontSize="18" fontFamily="monospace" fontWeight="900" textAnchor="middle">주의</text>
+            <text x="360" y="335" fill="#ef4444" fontSize="18" fontFamily="monospace" fontWeight="900" textAnchor="middle">위험</text>
           </svg>
           
           {/* Central Score Display */}
-          <div className="absolute inset-x-0 bottom-4 flex flex-col items-center pointer-events-none">
-            <span className="text-4xl font-black font-mono tabular-nums tracking-tighter leading-none" style={{ color, textShadow: `0 0 25px ${color}40` }}>
+          <div className="absolute inset-x-0 bottom-1 flex flex-col items-center pointer-events-none">
+            <span className="text-6xl font-black font-mono tabular-nums tracking-tighter leading-none" style={{ color, textShadow: `0 0 25px ${color}40` }}>
               {Math.round(animScore)}
             </span>
-            <span className="text-[10px] font-black font-mono text-muted-foreground/60 mt-1 uppercase tracking-widest">Score / 100</span>
+            <span className="text-sm font-black font-mono text-muted-foreground/60 mt-2 uppercase tracking-widest">Score / 100</span>
           </div>
-        </div>
-      </div>
-
-      <div className="pt-2 border-t border-border mt-1 flex items-center justify-between">
-        <p className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest">전주 대비 변동</p>
-        <div className="flex items-center gap-1.5 bg-[var(--danger)]/10 px-2 py-0.5 rounded-lg border border-[var(--danger)]/20 shadow-sm">
-          <TrendingUp className="w-3 h-3 text-[var(--danger)]" aria-hidden="true" />
-          <span className="text-[10px] font-black text-[var(--danger)] tracking-tighter">+4.2 UP</span>
         </div>
       </div>
     </div>
