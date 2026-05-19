@@ -38,7 +38,7 @@ export function DashboardHeader() {
           <span className="text-base font-semibold text-[var(--danger)]">고위험 경보</span>
         </div>
 
-        
+
         <div className="flex items-center gap-4 border-l border-border pl-4">
           <Suspense fallback={<div className="w-[110px] h-8 bg-muted animate-pulse rounded-md" />}>
             <YearSelector />

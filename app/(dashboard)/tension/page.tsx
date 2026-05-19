@@ -57,35 +57,10 @@ export default async function TensionPage({
             <TensionGauge />
           </div>
 
-<<<<<<< HEAD
           <div className="bg-card border border-border rounded-xl p-4 flex flex-col flex-1 min-h-[300px] shadow-sm">
             <div className="mb-2">
               <h2 className="text-2xl font-bold text-foreground tracking-tight">다차원 위험 레이더</h2>
               <p className="text-sm text-muted-foreground font-medium uppercase tracking-wider">위협 수준 통합 매트릭스</p>
-=======
-      <div className="bg-card border border-border rounded-xl p-4 shadow-sm">
-        <div className="mb-3">
-          <h2 className="text-base font-semibold text-foreground tracking-tight">{year}년 분기별 추이</h2>
-          <p className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider">리스크 점수 변화 히스토리</p>
-        </div>
-        <div className="grid grid-cols-4 gap-3">
-          {history.map((h) => (
-            <div key={h.period} className="flex flex-col gap-1.5 p-3 bg-muted/5 rounded-lg border border-border/40">
-              <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">{h.period}</p>
-              <p className="text-2xl font-black tabular-nums tracking-tighter" style={{ color: scoreColor(h.score) }}>
-                {h.score}
-              </p>
-              <span
-                className="text-[9px] font-black w-fit px-1.5 py-0.5 rounded-md border"
-                style={{
-                  color: scoreColor(h.score),
-                  borderColor: `color-mix(in srgb, ${scoreColor(h.score)} 30%, transparent)`,
-                  background: `color-mix(in srgb, ${scoreColor(h.score)} 12%, transparent)`,
-                }}
-              >
-                {h.label}
-              </span>
->>>>>>> a11d88f (feat : 년도별 조회)
             </div>
             <div className="flex-1 min-h-0">
               <ThreatRadarChart />
@@ -97,7 +72,7 @@ export default async function TensionPage({
         <div className="xl:col-span-8 flex flex-col min-h-0">
           <div className="bg-card border border-border rounded-xl p-4 shadow-sm h-full flex flex-col">
             <div className="mb-4">
-              <h2 className="text-2xl font-bold text-foreground tracking-tight">2024년 분기별 추이</h2>
+              <h2 className="text-2xl font-bold text-foreground tracking-tight">{year}년 분기별 추이</h2>
               <p className="text-sm text-muted-foreground font-medium uppercase tracking-wider">리스크 점수 변화 히스토리</p>
             </div>
             
@@ -106,7 +81,7 @@ export default async function TensionPage({
                 <TensionTrendChart />
               </div>
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-auto pt-4 border-t border-border/20">
-                {HISTORY.map((h) => (
+                {history.map((h) => (
                   <div key={h.period} className="flex flex-col gap-2 p-5 bg-muted/5 rounded-2xl border border-border/40 shadow-sm transition-all hover:shadow-md hover:bg-muted/10">
                     <p className="text-sm font-bold text-muted-foreground uppercase tracking-widest">{h.period}</p>
                     <div className="flex items-baseline gap-3">
