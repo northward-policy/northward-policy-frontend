@@ -36,12 +36,23 @@ const USER_GUIDES = [
   },
 ]
 
-export default function InsightsPage() {
+export default async function InsightsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ year?: string }>
+}) {
+  const { year = "2024" } = await searchParams
+
   return (
     <div className="h-full flex flex-col gap-4">
       <div>
+<<<<<<< HEAD
         <h1 className="text-3xl font-bold text-foreground tracking-tight">인사이트</h1>
         <p className="text-sm text-muted-foreground mt-1">시장 영향도 · 선전 키워드 · 데이터 소스 현황</p>
+=======
+        <h1 className="text-lg font-bold text-foreground">인사이트 ({year}년)</h1>
+        <p className="text-xs text-muted-foreground mt-0.5">{year}년 시장 영향도 · 선전 키워드 · 데이터 소스 현황</p>
+>>>>>>> e71af86cd607c7af4c83986b698ba01ae2ef5172
       </div>
 
       <InsightCards />

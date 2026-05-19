@@ -10,11 +10,39 @@ import { Download, FileImage } from "lucide-react"
 import { downloadAsImage, downloadAsCSV } from "@/lib/export-utils"
 import tensionData from "@/lib/tension-data.json"
 
+<<<<<<< HEAD
 const INITIAL_WEIGHTS: Record<string, number> = {
   military: 0.4,
   diplomatic: 0.3,
   political: 0.2,
   economic: 0.1,
+=======
+const MOCK_DATA: Record<string, { period: string; score: number; label: string }[]> = {
+  "2022": [
+    { period: "1분기", score: 35, label: "안정" },
+    { period: "2분기", score: 42, label: "안정" },
+    { period: "3분기", score: 48, label: "안정" },
+    { period: "4분기", score: 52, label: "주의" },
+  ],
+  "2023": [
+    { period: "1분기", score: 55, label: "주의" },
+    { period: "2분기", score: 60, label: "주의" },
+    { period: "3분기", score: 65, label: "경고" },
+    { period: "4분기", score: 70, label: "경고" },
+  ],
+  "2024": [
+    { period: "1분기", score: 47, label: "안정" },
+    { period: "2분기", score: 58, label: "주의" },
+    { period: "3분기", score: 69, label: "경고" },
+    { period: "4분기", score: 78, label: "고위험" },
+  ],
+  "2025": [
+    { period: "1분기", score: 82, label: "고위험" },
+    { period: "2분기", score: 85, label: "고위험" },
+    { period: "3분기", score: 88, label: "고위험" },
+    { period: "4분기", score: 92, label: "고위험" },
+  ],
+>>>>>>> e71af86cd607c7af4c83986b698ba01ae2ef5172
 }
 
 function scoreColor(score: number) {
@@ -23,6 +51,7 @@ function scoreColor(score: number) {
   return "#ef4444"
 }
 
+<<<<<<< HEAD
 export default function TensionPage() {
   const [scenarioId, setScenarioId] = useState(tensionData.scenarios[0].id)
   const [weights, setWeights] = useState<Record<string, number>>(INITIAL_WEIGHTS)
@@ -61,6 +90,15 @@ export default function TensionPage() {
   const exportHistoryData = () => {
     downloadAsCSV(scenario.history, `${scenario.id}_history`)
   }
+=======
+export default async function TensionPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ year?: string }>
+}) {
+  const { year = "2024" } = await searchParams
+  const history = MOCK_DATA[year] || MOCK_DATA["2024"]
+>>>>>>> e71af86cd607c7af4c83986b698ba01ae2ef5172
 
   return (
     <div className="h-full flex flex-col gap-4 p-1 overflow-hidden">
@@ -167,6 +205,7 @@ export default function TensionPage() {
 
           <div className="bg-card border border-border rounded-xl p-5 shadow-sm flex-1 flex flex-col min-h-0 relative overflow-hidden group">
             <div className="mb-4">
+<<<<<<< HEAD
               <h2 className="text-lg font-bold text-foreground">상세 정보 분석</h2>
               <p className="text-xs text-muted-foreground">그래프 점을 클릭하여 자료 확인</p>
             </div>
@@ -233,12 +272,17 @@ export default function TensionPage() {
             <div className="mb-4">
               <h2 className="text-2xl font-bold text-foreground tracking-tight">연도별 긴장도 추이</h2>
               <p className="text-sm text-muted-foreground font-medium uppercase tracking-wider">{scenario.name} 히스토리</p>
+=======
+              <h2 className="text-2xl font-bold text-foreground tracking-tight">{year}년 분기별 추이</h2>
+              <p className="text-sm text-muted-foreground font-medium uppercase tracking-wider">리스크 점수 변화 히스토리</p>
+>>>>>>> e71af86cd607c7af4c83986b698ba01ae2ef5172
             </div>
             
             <div className="flex flex-col flex-1 gap-6 min-h-0">
               <div className="flex-1 min-h-[300px]">
                 <TensionTrendChart data={scenario.history} onPointClick={handlePointClick} />
               </div>
+<<<<<<< HEAD
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-auto pt-4 border-t border-border/20">
                 {scenario.history.map((h) => (
                   <div 
@@ -253,6 +297,14 @@ export default function TensionPage() {
                     <p className="text-xs font-black text-muted-foreground uppercase tracking-widest">{h.period}</p>
                     <div className="flex items-baseline gap-2">
                       <p className="text-3xl font-black tabular-nums tracking-tighter" style={{ color: scoreColor(h.score) }}>
+=======
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-auto pt-4 border-t border-border/20">
+                {history.map((h) => (
+                  <div key={h.period} className="flex flex-col gap-2 p-5 bg-muted/5 rounded-2xl border border-border/40 shadow-sm transition-all hover:shadow-md hover:bg-muted/10">
+                    <p className="text-sm font-bold text-muted-foreground uppercase tracking-widest">{h.period}</p>
+                    <div className="flex items-baseline gap-3">
+                      <p className="text-4xl font-black tabular-nums tracking-tighter" style={{ color: scoreColor(h.score) }}>
+>>>>>>> e71af86cd607c7af4c83986b698ba01ae2ef5172
                         {h.score}
                       </p>
                       <span className="text-[10px] font-black px-1.5 py-0.5 rounded bg-muted/10 border uppercase" style={{ color: scoreColor(h.score), borderColor: "currentColor" }}>
