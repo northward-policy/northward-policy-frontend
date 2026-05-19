@@ -60,12 +60,18 @@ const SUMMARY_CARDS = [
   },
 ]
 
-export default function OverviewPage() {
+export default async function OverviewPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ year?: string }>
+}) {
+  const { year = "2024" } = await searchParams
+
   return (
     <div className="h-full flex flex-col gap-5 p-2">
       <div className="mb-2">
-        <h1 className="text-2xl font-black text-foreground tracking-tight">대시보드 실시간 개요</h1>
-        <p className="text-sm text-muted-foreground mt-1">지정학적 리스크 및 경제 지표 통합 분석 플랫폼</p>
+        <h1 className="text-2xl font-black text-foreground tracking-tight">{year}년 대시보드 실시간 개요</h1>
+        <p className="text-sm text-muted-foreground mt-1">{year}년 지정학적 리스크 및 경제 지표 통합 분석 플랫폼</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 flex-1">

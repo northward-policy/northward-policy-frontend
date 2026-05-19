@@ -15,12 +15,18 @@ const RISK_COLOR: Record<string, string> = {
   주의: "#f59e0b",
 }
 
-export default function TradePage() {
+export default async function TradePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ year?: string }>
+}) {
+  const { year = "2024" } = await searchParams
+
   return (
     <div className="h-full flex flex-col gap-4">
       <div>
-        <h1 className="text-lg font-bold text-foreground">무역 모니터</h1>
-        <p className="text-xs text-muted-foreground mt-0.5">UN Comtrade 기반 수출입 현황 · 제재 위반 의심 품목</p>
+        <h1 className="text-lg font-bold text-foreground">무역 모니터 ({year}년)</h1>
+        <p className="text-xs text-muted-foreground mt-0.5">UN Comtrade 기반 {year}년 수출입 현황 · 제재 위반 의심 품목</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 flex-1 min-h-0">

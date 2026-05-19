@@ -1,7 +1,8 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { ShieldAlert } from "lucide-react"
+import { YearSelector } from "./YearSelector"
 
 export function DashboardHeader() {
   const [now, setNow] = useState(new Date())
@@ -36,9 +37,16 @@ export function DashboardHeader() {
           <span className="pulse-dot w-2 h-2 rounded-full bg-[var(--danger)] inline-block shrink-0" aria-hidden="true" />
           <span className="text-base font-semibold text-[var(--danger)]">고위험 경보</span>
         </div>
-        <span className="hidden md:block text-sm font-mono text-muted-foreground" suppressHydrationWarning>
-          {formatted} UTC
-        </span>
+
+        
+        <div className="flex items-center gap-4 border-l border-border pl-4">
+          <Suspense fallback={<div className="w-[110px] h-8 bg-muted animate-pulse rounded-md" />}>
+            <YearSelector />
+          </Suspense>
+          <span className="hidden md:block text-sm font-mono text-muted-foreground" suppressHydrationWarning>
+            {formatted} UTC
+          </span>
+        </div>
       </div>
     </header>
   )

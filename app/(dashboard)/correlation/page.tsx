@@ -32,7 +32,14 @@ const SCENARIOS = [
   },
 ]
 
-export default function CorrelationPage() {
+export default async function CorrelationPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ year?: string }>
+}) {
+  const { year = "2024" } = await searchParams
+  const nextYear = parseInt(year) + 1
+
   return (
     <div className="h-full flex flex-col gap-4">
       <div>
@@ -51,7 +58,7 @@ export default function CorrelationPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 flex-1 min-h-0">
         <div className="bg-card border border-border rounded-xl p-5 flex flex-col min-h-0">
-          <h2 className="text-sm font-semibold text-foreground mb-3">긴장도 · 무역 추이</h2>
+          <h2 className="text-sm font-semibold text-foreground mb-3">긴장도 · 무역 추이 ({year}년)</h2>
           <div className="flex-1 min-h-0">
             <CorrelationChart />
           </div>
@@ -59,7 +66,7 @@ export default function CorrelationPage() {
 
         <div className="flex flex-col gap-4 min-h-0">
           <div className="bg-card border border-border rounded-xl p-5 flex flex-col flex-1 min-h-0">
-            <h2 className="text-sm font-semibold text-foreground mb-1">산점도</h2>
+            <h2 className="text-sm font-semibold text-foreground mb-1">산점도 ({year}년)</h2>
             <p className="text-[11px] text-muted-foreground mb-2">각 점 = 1개월 데이터</p>
             <div className="flex-1 min-h-0">
               <ScatterPlot />
@@ -67,7 +74,7 @@ export default function CorrelationPage() {
           </div>
 
           <div className="bg-card border border-border rounded-xl p-4">
-            <h2 className="text-xs font-semibold text-muted-foreground mb-2.5">2025년 1분기 AI 예측 시나리오</h2>
+            <h2 className="text-xs font-semibold text-muted-foreground mb-2.5">{nextYear}년 1분기 AI 예측 시나리오</h2>
             <div className="grid grid-cols-3 gap-2">
               {SCENARIOS.map((sc) => (
                 <div
